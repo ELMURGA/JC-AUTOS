@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock de Vehículos | JC Autos de Ocasión</title>
+    <meta name="description"
+        content="Descubre nuestro stock de vehículos premium revisados y garantizados en Utrera, Sevilla.">
+    <link rel="icon" type="image/webp" href="../assets/favicon.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/stock.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-pill">
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html#inicio" class="nav-link">Inicio</a>
+                <span class="nav-dot"></span>
+                <a href="stock.html" class="nav-link" style="color: var(--accent-primary);">Stock</a>
+                <span class="nav-dot"></span>
+                <a href="../index.html#servicios" class="nav-link">Servicios</a>
+                <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
+                <a href="contacto.html" class="nav-link-cta">Contacto</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+                <i data-lucide="x"></i>
+            </button>
+            <nav class="mobile-menu-nav">
+                <a href="../index.html#inicio" class="mobile-link"><span class="mobile-link-num">01</span>Inicio</a>
+                <a href="stock.html" class="mobile-link"><span class="mobile-link-num">02</span>Stock</a>
+                <a href="../index.html#servicios" class="mobile-link"><span class="mobile-link-num">03</span>Servicios</a>
+                <a href="../index.html#nosotros" class="mobile-link"><span class="mobile-link-num">04</span>Nosotros</a>
+                <a href="contacto.html" class="mobile-link"><span class="mobile-link-num">05</span>Contacto</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <a href="tel:+34610090974" class="mobile-menu-phone">610 090 974</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title text-gradient">Nuestro Stock</h1>
+            <p class="section-subtitle">Encuentra el vehículo perfecto para ti. Calidad premium garantizada.</p>
+        </div>
+    </header>
+
+    <!-- FILTER BAR HORIZONTAL -->
+    <div class="filter-bar-section">
+        <div class="container">
+            <!-- Mobile-only: búsqueda + botón Filtros -->
+            <div class="filter-mob-row">
+                <div class="fb-search-wrap" style="flex:1">
+                    <i data-lucide="search" size="15" class="fb-search-icon"></i>
+                    <input type="text" id="filterSearchMob" class="fb-search-input" placeholder="Buscar vehículo..." autocomplete="off">
+                </div>
+                <button class="filter-mob-btn" id="filterSheetOpen" type="button">
+                    <i data-lucide="sliders-horizontal" size="16"></i>
+                    <span>Filtros</span>
+                    <span class="filter-mob-badge" id="filterMobBadge"></span>
+                </button>
+            </div>
+            <div class="active-filters-container" id="activeFilters"></div>
+        </div>
+        <!-- filter-bar FUERA del container para que position:fixed funcione desde el viewport en móvil -->
+        <div class="filter-bar" id="filterBar">
+            <!-- Sheet header: solo visible en móvil -->
+            <div class="filter-bar-sheet-head">
+                <div class="filter-bar-sheet-handle"></div>
+                <div class="filter-bar-sheet-title-row">
+                    <span class="filter-bar-sheet-title">Filtros</span>
+                    <button class="filter-bar-sheet-close" id="filterSheetClose" type="button">
+                        <i data-lucide="x" size="18"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="fb-search-wrap">
+                <i data-lucide="search" size="15" class="fb-search-icon"></i>
+                <input type="text" id="filterSearch" class="fb-search-input" placeholder="Buscar vehículo..." autocomplete="off">
+            </div>
+            <div class="fb-group">
+                <label class="fb-label">Marca</label>
+                <select class="fb-select" id="filterMarca">
+                    <option value="">Todas</option>
+                    <option value="audi">Audi</option>
+                    <option value="bmw">BMW</option>
+                    <option value="citroen">Citroën</option>
+                    <option value="cupra">Cupra</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="ford">Ford</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="kia">KIA</option>
+                    <option value="landrover">Land Rover</option>
+                    <option value="mercedes">Mercedes-Benz</option>
+                    <option value="mini">Mini</option>
+                    <option value="mitsubishi">Mitsubishi</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="opel">Opel</option>
+                    <option value="peugeot">Peugeot</option>
+                    <option value="porsche">Porsche</option>
+                    <option value="renault">Renault</option>
+                    <option value="seat">Seat</option>
+                    <option value="skoda">Škoda</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="volvo">Volvo</option>
+                </select>
+            </div>
+            <div class="fb-group">
+                <label class="fb-label">Combustible</label>
+                <select class="fb-select" id="filterCombustible">
+                    <option value="">Todos</option>
+                    <option value="gasolina">Gasolina</option>
+                    <option value="diesel">Diésel</option>
+                    <option value="hibrido">Híbrido</option>
+                    <option value="electrico">Eléctrico</option>
+                </select>
+            </div>
+            <div class="fb-group">
+                <label class="fb-label">Precio máx.</label>
+                <select class="fb-select" id="filterPrecio">
+                    <option value="">Sin límite</option>
+                    <option value="15000">Hasta 15.000 €</option>
+                    <option value="25000">Hasta 25.000 €</option>
+                    <option value="40000">Hasta 40.000 €</option>
+                    <option value="60000">Hasta 60.000 €</option>
+                    <option value="80000">Hasta 80.000 €</option>
+                    <option value="100000">Hasta 100.000 €</option>
+                </select>
+            </div>
+            <div class="fb-group">
+                <label class="fb-label">Año desde</label>
+                <select class="fb-select" id="filterAnio">
+                    <option value="">Cualquier año</option>
+                    <option value="2015">Desde 2015</option>
+                    <option value="2018">Desde 2018</option>
+                    <option value="2019">Desde 2019</option>
+                    <option value="2020">Desde 2020</option>
+                    <option value="2021">Desde 2021</option>
+                    <option value="2022">Desde 2022</option>
+                </select>
+            </div>
+            <div class="fb-group">
+                <label class="fb-label">Kilómetros</label>
+                <select class="fb-select" id="filterKm">
+                    <option value="">Sin límite</option>
+                    <option value="50000">Hasta 50.000 km</option>
+                    <option value="100000">Hasta 100.000 km</option>
+                    <option value="150000">Hasta 150.000 km</option>
+                    <option value="200000">Hasta 200.000 km</option>
+                </select>
+            </div>
+            <div class="fb-actions">
+                <button type="button" class="fb-btn" id="filterBtn">
+                    <i data-lucide="search" size="16"></i>
+                    <span id="resultsCount">8</span> coches
+                </button>
+                <button type="button" class="fb-reset-btn" id="resetFilters" title="Limpiar filtros">
+                    <i data-lucide="rotate-ccw" size="15"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Backdrop para el sheet de filtros (móvil) -->
+    <div class="filter-sheet-backdrop" id="filterSheetBackdrop"></div>
+
+    <main class="container stock-main">
+        <div class="stock-grid" id="stockGrid">
+
+            <!-- Car 1: VW Touareg R-Line -->
+            <article class="car-card" data-id="vw-touareg-rline"
+                data-marca="volkswagen" data-combustible="diesel"
+                data-año="2022" data-km="45000" data-precio="55900">
+                <div class="car-image-wrapper">
+                    <div class="car-placeholder">
+                        <i data-lucide="car" size="48"></i>
+                        <span>Volkswagen Touareg</span>
+                    </div>
+                    <div class="car-tags"></div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">VW Touareg R-Line</h3>
+                    <div class="car-price">55.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2022</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 45.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 286 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20VW%20Touareg%20R-Line%20a%2055.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 2: Audi Q7 S-Line -->
+            <article class="car-card" data-id="audi-q7-sline"
+                data-marca="audi" data-combustible="diesel"
+                data-año="2021" data-km="60000" data-precio="62900">
+                <div class="car-image-wrapper">
+                    <div class="car-placeholder">
+                        <i data-lucide="car" size="48"></i>
+                        <span>Audi Q7</span>
+                    </div>
+                    <div class="car-tags">
+                        <span class="badge" style="background:rgba(0,136,255,0.2); color:var(--accent-secondary); border-color:rgba(0,136,255,0.3);">7 Plazas</span>
+                    </div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Audi Q7 S-Line</h3>
+                    <div class="car-price">62.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2021</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 60.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 286 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Audi%20Q7%20S-Line%20a%2062.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 3: BMW X3 xDrive -->
+            <article class="car-card" data-id="bmw-x3-xdrive"
+                data-marca="bmw" data-combustible="diesel"
+                data-año="2021" data-km="75000" data-precio="41900">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car7_bmw_x3.webp" alt="BMW X3 xDrive">
+                    <div class="car-tags"></div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">BMW X3 xDrive</h3>
+                    <div class="car-price">41.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2021</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 75.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 190 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20BMW%20X3%20xDrive%20a%2041.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 4: Mercedes G63 AMG -->
+            <article class="car-card" data-id="mercedes-g63-amg"
+                data-marca="mercedes" data-combustible="gasolina"
+                data-año="2020" data-km="85000" data-precio="159000">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car6_g63.webp" alt="Mercedes G63 AMG">
+                    <div class="car-tags">
+                        <span class="badge badge-premium">Premium</span>
+                    </div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Mercedes G63 AMG</h3>
+                    <div class="car-price">159.000 €</div>
+                    <div class="car-subtitle">ESPECTACULAR ESTADO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2020</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 85.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 585 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Gasolina</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Mercedes%20G63%20AMG%20a%20159.000%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 5: Mini JCW -->
+            <article class="car-card" data-id="mini-jcw"
+                data-marca="mini" data-combustible="gasolina"
+                data-año="2021" data-km="34000" data-precio="32900">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car4_mini_jcw.webp" alt="Mini John Cooper Works">
+                    <div class="car-tags"></div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Mini John Cooper Works</h3>
+                    <div class="car-price">32.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2021</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 34.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 231 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Gasolina</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Mini%20John%20Cooper%20Works%20a%2032.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 6: VW Tiguan R Line -->
+            <article class="car-card" data-id="vw-tiguan-rline"
+                data-marca="volkswagen" data-combustible="diesel"
+                data-año="2022" data-km="99300" data-precio="31900">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car8_tiguan.webp" alt="Volkswagen Tiguan R Line">
+                    <div class="car-tags"></div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Volkswagen Tiguan R Line</h3>
+                    <div class="car-price">31.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2022</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 99.300 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 150 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Volkswagen%20Tiguan%20R%20Line%20a%2031.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 7: Peugeot Rifter GT -->
+            <article class="car-card" data-id="peugeot-rifter-gt"
+                data-marca="peugeot" data-combustible="diesel"
+                data-año="2019" data-km="149000" data-precio="16900">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car1_rifter.webp" alt="Peugeot Rifter GT">
+                    <div class="car-tags">
+                        <span class="badge" style="background:rgba(0,136,255,0.2); color:var(--accent-secondary); border-color:rgba(0,136,255,0.3);">7 Plazas</span>
+                    </div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Peugeot Rifter GT</h3>
+                    <div class="car-price">16.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2019</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 149.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 130 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Peugeot%20Rifter%20GT%20a%2016.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Car 8: Peugeot 3008 HDI -->
+            <article class="car-card" data-id="peugeot-3008-hdi"
+                data-marca="peugeot" data-combustible="diesel"
+                data-año="2021" data-km="130000" data-precio="16900">
+                <div class="car-image-wrapper">
+                    <img src="../assets/car5_3008.webp" alt="Peugeot 3008 HDI">
+                    <div class="car-tags"></div>
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">Peugeot 3008 HDI</h3>
+                    <div class="car-price">16.900 €</div>
+                    <div class="car-subtitle">IVA DEDUCIBLE INCLUIDO</div>
+                    <div class="car-specs">
+                        <div class="spec-item"><i data-lucide="calendar" size="16"></i> 2021</div>
+                        <div class="spec-item"><i data-lucide="gauge" size="16"></i> 130.000 km</div>
+                        <div class="spec-item"><i data-lucide="zap" size="16"></i> 130 CV</div>
+                        <div class="spec-item"><i data-lucide="fuel" size="16"></i> Diésel</div>
+                    </div>
+                    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20el%20Peugeot%203008%20HDI%20a%2016.900%E2%82%AC"
+                        target="_blank" class="btn btn-whatsapp" style="width:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Me interesa
+                    </a>
+                </div>
+            </article>
+
+            <!-- Sin resultados -->
+            <div class="no-results" id="noResults" style="display:none;">
+                <i data-lucide="search" size="48" style="opacity:0.2;margin-bottom:1rem;display:inline-block;"></i>
+                <h3 style="color:white;font-size:1.5rem;margin-bottom:0.5rem;">No se encontraron vehículos</h3>
+                <p style="font-size:1.1rem;">Ajusta los filtros para ver más resultados.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/34610090974?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20vuestros%20coches"
+        target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="footer-huge-text">JC AUTOS</div>
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <img src="../assets/logo_nuevo.webp" alt="JC Autos de Ocasión" class="footer-logo-img">
+                    </a>
+                    <div class="footer-info-item">
+                        <i data-lucide="map-pin" size="18"></i>
+                        <span>C. Rda. de los Torneros, 47<br>41710 Utrera, Sevilla</span>
+                    </div>
+                    <div class="footer-info-item">
+                        <i data-lucide="phone" size="18"></i>
+                        <a href="tel:+34610090974">610 090 974</a>
+                    </div>
+                    <div class="footer-info-item">
+                        <i data-lucide="mail" size="18"></i>
+                        <a href="mailto:info@jocarautomoviles.com">info@jocarautomoviles.com</a>
+                    </div>
+                </div>
+
+                <div class="footer-links-grid">
+                    <div class="footer-link-col">
+                        <h3>Stock</h3>
+                        <ul>
+                            <li><a href="stock.html">Todos los coches</a></li>
+                            <li><a href="stock.html">Vehículos Premium</a></li>
+                            <li><a href="../index.html#tasacion">Tasar mi vehículo</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-col">
+                        <h3>Empresa</h3>
+                        <ul>
+                            <li><a href="../index.html#nosotros">Sobre nosotros</a></li>
+                            <li><a href="../index.html#servicios">Servicios</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="mantenimiento.html">Mantenimiento</a></li>
+                            <li><a href="garantia.html">Garantías</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-col">
+                        <h3>Síguenos</h3>
+                        <div class="footer-socials">
+                            <a href="https://www.instagram.com/jocarautomoviles/" target="_blank"
+                                aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; 2026 JC Autos de Ocasión. Todos los derechos reservados.
+                </div>
+                <div class="footer-legal-links">
+                    <a href="mantenimiento.html">Mantenimiento</a>
+                    <a href="garantia.html">Garantía Mecánica</a>
+                    <a href="aviso-legal.html">Aviso Legal</a>
+                    <a href="privacidad.html">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/carData.js"></script>
+    <script src="../scripts/stock.js"></script>
+    <script>lucide.createIcons();</script>
+
+    <!-- Lightbox overlay -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="event.stopPropagation(); closeLightbox();">
+            <i data-lucide="x" size="20"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+    </div>
+
+</body>
+
+</html>

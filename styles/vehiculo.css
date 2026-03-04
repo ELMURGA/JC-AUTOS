@@ -1,0 +1,916 @@
+/* ============================================================
+   VEHICULO.CSS — Página de detalle del vehículo
+   JC Autos de Ocasión – Dark premium theme
+   ============================================================ */
+
+/* ─── Breadcrumb bar ─────────────────────────────────────── */
+.veh-breadcrumb-bar {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 0;
+    margin-top: 70px;
+}
+
+.veh-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.veh-breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color var(--transition-fast);
+}
+
+.veh-breadcrumb a:hover {
+    color: var(--accent-primary);
+}
+
+.veh-breadcrumb span {
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+.bc-sep {
+    color: var(--border-color);
+}
+
+/* ─── Hero: galería + panel info ─────────────────────────── */
+.veh-hero {
+    background: var(--bg-main);
+    padding: 2.5rem 0 2rem;
+}
+
+.veh-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* ── GALERÍA ──────────────────────────────────────────────── */
+.veh-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.veh-main-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--bg-surface);
+    cursor: pointer;
+}
+
+.veh-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.veh-main-img-wrap:hover .veh-main-img {
+    transform: scale(1.02);
+}
+
+.veh-main-img-wrap .car-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+}
+
+/* Badges sobre la imagen principal */
+.veh-gallery-badges {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    z-index: 2;
+}
+
+/* Contador de foto */
+.veh-photo-counter {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+    z-index: 2;
+    font-weight: 500;
+}
+
+/* Flechas de galería */
+.veh-gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.55);
+    border: none;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 3;
+    backdrop-filter: blur(6px);
+}
+
+.veh-gallery-arrow:hover {
+    background: var(--accent-primary);
+    color: var(--bg-main);
+}
+
+.veh-gallery-arrow.left  { left: 12px; }
+.veh-gallery-arrow.right { right: 12px; }
+
+/* Miniaturas */
+.veh-thumbnails {
+    display: flex;
+    gap: 0.55rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) transparent;
+    padding-bottom: 4px;
+}
+
+.veh-thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    background: var(--bg-surface);
+}
+
+.veh-thumb:hover {
+    border-color: var(--accent-primary);
+}
+
+.veh-thumb.active {
+    border-color: var(--accent-primary);
+}
+
+.veh-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── PANEL INFO (derecha) ─────────────────────────────────── */
+.veh-info-panel {
+    position: sticky;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.veh-brand-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+}
+
+.veh-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0;
+}
+
+.veh-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Especificaciones rápidas en grid */
+.veh-quick-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.qs-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.qs-item svg {
+    color: var(--accent-primary);
+}
+
+/* Precio */
+.veh-price-box {
+    padding: 1rem 1.2rem;
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 12px;
+}
+
+.veh-price-main {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    letter-spacing: -0.03em;
+}
+
+.veh-price-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+/* Preview financiación */
+.veh-finance-preview {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.veh-finance-preview svg { color: var(--accent-primary); }
+.veh-finance-preview strong { color: var(--text-primary); font-weight: 700; }
+
+.fp-link {
+    margin-left: auto;
+    color: var(--accent-primary);
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.fp-link:hover { opacity: 0.8; }
+
+/* Botones acción */
+.veh-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.veh-btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.veh-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+    font-size: 0.88rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 600;
+}
+
+.veh-btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Detail tags */
+.veh-detail-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.dt-tag {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--bg-surface);
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.dt-tag svg { color: var(--accent-primary); }
+
+/* ─── Sección de detalles ─────────────────────────────────── */
+.veh-details {
+    background: var(--bg-surface);
+    padding: 3rem 0 4rem;
+}
+
+.veh-details-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.veh-section {
+    margin-bottom: 2.5rem;
+}
+
+.veh-section:last-child {
+    margin-bottom: 0;
+}
+
+.veh-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.veh-section-title svg { color: var(--accent-primary); }
+
+/* Descripción */
+.veh-description {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 0.9rem;
+}
+
+/* Ficha técnica — grid compacta */
+.veh-specs-table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.spec-row {
+    background: var(--bg-surface-elevated);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.spec-key {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.spec-val {
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Equipamiento por categoría */
+.veh-equipment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.equip-category {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.equip-cat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.equip-cat-header:hover {
+    background: rgba(212,168,67,0.06);
+}
+
+.equip-cat-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.equip-cat-name svg { color: var(--accent-primary); }
+
+.equip-cat-count {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: rgba(212,168,67,0.1);
+    padding: 0.15rem 0.55rem;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: 0.75rem;
+}
+
+.equip-cat-chevron {
+    color: var(--text-muted);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+}
+
+.equip-category.open .equip-cat-chevron {
+    transform: rotate(180deg);
+}
+
+.equip-items {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem 0.75rem;
+    padding: 0 1.1rem 1rem;
+}
+
+.equip-category.open .equip-items {
+    display: grid;
+}
+
+.equip-item {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0;
+}
+
+.equip-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ─── Calculadora financiera (aside) ─────────────────────── */
+.veh-calc-aside {
+    position: sticky;
+    top: 88px;
+}
+
+.veh-calc-panel {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.calc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--accent-primary);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.calc-header h3 { color: var(--text-primary); font-size: 1rem; margin: 0; }
+
+.calc-price-display {
+    background: var(--bg-surface);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.calc-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.calc-price-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.calc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.calc-field label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calc-val-display {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.82rem;
+}
+
+/* Range input custom */
+.calc-field input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--bg-surface);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.calc-field input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    cursor: pointer;
+    border: 2px solid var(--bg-main);
+    box-shadow: 0 0 0 3px rgba(212,168,67,0.2);
+}
+
+.calc-field input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    cursor: pointer;
+    border: 2px solid var(--bg-main);
+}
+
+/* Track filled */
+.calc-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: -0.2rem;
+}
+
+/* Resultados */
+.calc-result {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    border: 1px solid var(--border-color);
+}
+
+.calc-result-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.calc-result-row strong { color: var(--text-primary); font-weight: 600; }
+
+.calc-result-monthly {
+    font-size: 0.95rem !important;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.6rem;
+    margin-top: 0.2rem;
+}
+
+.calc-result-monthly strong {
+    font-size: 1.3rem !important;
+    color: var(--accent-primary) !important;
+    font-weight: 800 !important;
+}
+
+.calc-result-total strong { color: var(--text-muted) !important; font-size: 0.78rem; }
+
+.calc-disclaimer {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ─── Vehículos similares ─────────────────────────────────── */
+.veh-similar {
+    background: var(--bg-main);
+    padding: 3.5rem 0 4rem;
+}
+
+.veh-similar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+/* Tarjeta mini (dentro de similares y de stock) */
+.similar-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+    text-decoration: none;
+    display: block;
+}
+
+.similar-card:hover {
+    border-color: rgba(212,168,67,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.similar-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+}
+
+.similar-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-surface-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+}
+
+.similar-body {
+    padding: 0.9rem 1rem;
+}
+
+.similar-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.similar-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.similar-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.65rem;
+}
+
+.similar-meta span {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: var(--bg-surface-elevated);
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+}
+
+.similar-price {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+}
+
+/* ─── CTA strip ───────────────────────────────────────────── */
+.veh-cta-strip {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+}
+
+.veh-cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.veh-cta-content h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+}
+
+.veh-cta-content p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.veh-cta-btns {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-outline-gold:hover {
+    background: var(--accent-primary);
+    color: var(--bg-main);
+}
+
+/* ─── Lightbox ────────────────────────────────────────────── */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: default;
+    box-shadow: 0 0 80px rgba(0,0,0,0.7);
+}
+
+#lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+#lightbox-close:hover { background: var(--accent-primary); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+
+/* Tablet grande: reducir columna info */
+@media (max-width: 1100px) {
+    .veh-hero-layout {
+        grid-template-columns: 1fr 340px;
+    }
+    .veh-details-layout {
+        grid-template-columns: 1fr 320px;
+    }
+    .veh-similar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .veh-hero-layout {
+        grid-template-columns: 1fr;
+    }
+    .veh-info-panel {
+        position: static;
+    }
+    .veh-details-layout {
+        grid-template-columns: 1fr;
+    }
+    .veh-calc-aside {
+        position: static;
+    }
+    .veh-cta-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .veh-cta-btns {
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .veh-breadcrumb { font-size: 0.72rem; }
+    .veh-hero { padding: 1.5rem 0; }
+    .veh-title { font-size: 1.3rem; }
+    .veh-price-main { font-size: 1.6rem; }
+    .veh-quick-specs { grid-template-columns: repeat(2, 1fr); }
+    .veh-specs-table { grid-template-columns: 1fr; }
+    .equip-items { grid-template-columns: 1fr; }
+    .veh-similar-grid { grid-template-columns: repeat(2, 1fr); }
+    .veh-actions { gap: 0.5rem; }
+    .veh-cta-btns { flex-direction: column; width: 100%; }
+    .veh-cta-btns .btn { justify-content: center; }
+}
+
+@media (max-width: 380px) {
+    .veh-similar-grid { grid-template-columns: 1fr; }
+    .veh-thumb { width: 65px; height: 46px; }
+}

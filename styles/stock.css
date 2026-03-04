@@ -1,0 +1,515 @@
+/*
+  JC Autos de Ocasión — Stock Page Styles
+  Horizontal Filter Bar, Stock Grid, Lightbox
+*/
+
+/* ─────────────────────────────────────────────────
+   FILTER BAR HORIZONTAL
+   ───────────────────────────────────────────────── */
+.filter-bar-section {
+    background: rgba(14, 14, 18, 0.96);
+    border-bottom: 1px solid rgba(212, 168, 67, 0.12);
+    padding: 1.1rem 0 0.9rem;
+    position: sticky;
+    top: 70px;
+    z-index: 90;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.filter-bar {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    /* Fuera del .container → replicamos su ancho máximo para desktop */
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Label + Select wrapper */
+.fb-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 120px;
+}
+
+.fb-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-left: 0.1rem;
+}
+
+/* Native <select> styled */
+.fb-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: rgba(30, 30, 36, 0.95);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #d0d0d8;
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.6rem 2rem 0.6rem 0.8rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.fb-select option {
+    background: #111116;
+    color: #d0d0d8;
+}
+
+.fb-select:focus,
+.fb-select.active {
+    border-color: rgba(212, 168, 67, 0.6);
+    background-color: rgba(212, 168, 67, 0.05);
+    color: white;
+}
+
+.fb-select:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Search text wrapper */
+.fb-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1.5;
+    min-width: 160px;
+}
+
+.fb-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.fb-search-input {
+    background: rgba(30, 30, 36, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #d0d0d8;
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.6rem 0.8rem 0.6rem 2.2rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.fb-search-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.fb-search-input:focus {
+    border-color: rgba(212, 168, 67, 0.6);
+    background-color: rgba(212, 168, 67, 0.04);
+    color: white;
+}
+
+/* Actions (search btn + reset) */
+.fb-actions {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.fb-btn {
+    background: var(--accent-primary);
+    color: #050505;
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.fb-btn:hover {
+    background: #e8bb51;
+    transform: translateY(-1px);
+}
+
+.fb-btn:active {
+    transform: translateY(0);
+}
+
+.fb-reset-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: var(--text-muted);
+    padding: 0.6rem 0.8rem;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.2s;
+}
+
+.fb-reset-btn:hover {
+    border-color: rgba(212, 168, 67, 0.4);
+    color: var(--accent-primary);
+    background: rgba(212, 168, 67, 0.06);
+}
+
+/* Active filter tags row */
+.active-filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+}
+
+.active-filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(212, 168, 67, 0.12);
+    border: 1px solid rgba(212, 168, 67, 0.3);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.active-filter-tag:hover {
+    background: rgba(212, 168, 67, 0.22);
+}
+
+.active-filter-tag i {
+    opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────────
+   STOCK MAIN SECTION (padding top fix)
+   ───────────────────────────────────────────────── */
+.stock-main {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
+}
+
+/* ─────────────────────────────────────────────────
+   STOCK GRID
+   ───────────────────────────────────────────────── */
+.stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
+}
+
+/* ── No Results ── */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    background: rgba(20, 20, 24, 0.4);
+    border-radius: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────────
+   IMAGE ZOOM + LIGHTBOX
+   ───────────────────────────────────────────────── */
+.car-image-wrapper img {
+    cursor: zoom-in;
+}
+
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    border-radius: 12px;
+    box-shadow: 0 0 80px rgba(212, 168, 67, 0.2);
+    object-fit: contain;
+    cursor: default;
+    animation: lbFadeIn 0.2s ease;
+}
+
+@keyframes lbFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+#lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: rgba(212, 168, 67, 0.15);
+    border: 1px solid rgba(212, 168, 67, 0.4);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10000;
+}
+
+#lightbox-close:hover {
+    background: var(--accent-primary);
+    color: #050505;
+}
+
+/* ─────────────────────────────────────────────────
+   MOBILE FILTER TRIGGER ROW (only on mobile)
+   ───────────────────────────────────────────────── */
+.filter-mob-row {
+    display: none;
+}
+
+.filter-bar-sheet-head {
+    display: none;
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .filter-bar {
+        gap: 0.5rem;
+    }
+
+    .fb-group {
+        flex: 1 1 calc(50% - 0.5rem);
+        min-width: 130px;
+    }
+
+    .fb-search-wrap {
+        flex: 1 1 100%;
+    }
+
+    .fb-actions {
+        flex: 1 1 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 600px) {
+    /* ---- Filter bar section: NO sticky, NO backdrop-filter, NO z-index on mobile ---- */
+    .filter-bar-section {
+        position: relative;
+        top: auto;
+        z-index: auto;           /* sin z-index → no crea stacking context → position:fixed escapa al viewport */
+        padding: 0.7rem 0;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    /* ---- Mob trigger row ---- */
+    .filter-mob-row {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .filter-mob-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.58rem 1rem;
+        background: rgba(30, 30, 36, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        color: var(--text-secondary);
+        font-family: var(--font-main);
+        font-size: 0.88rem;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: all 0.2s;
+    }
+
+    .filter-mob-btn.has-filters {
+        border-color: rgba(212, 168, 67, 0.5);
+        color: var(--accent-primary);
+        background: rgba(212, 168, 67, 0.08);
+    }
+
+    .filter-mob-badge {
+        background: var(--accent-primary);
+        color: #050505;
+        border-radius: 50%;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 3px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .filter-mob-badge.visible {
+        display: flex;
+    }
+
+    /* ---- Filter bar → bottom sheet on mobile ---- */
+    .filter-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 501;
+        background: #0e0e14;
+        border-radius: 20px 20px 0 0;
+        border-top: 1px solid rgba(212, 168, 67, 0.2);
+        flex-direction: column;
+        padding: 0 1.25rem 2.5rem;
+        gap: 0.85rem;
+        max-height: 88vh;
+        max-width: none;
+        margin: 0;
+        overflow-y: auto;
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        pointer-events: none;
+        visibility: hidden;
+        /* always in flex mode so it can animate */
+        display: flex !important;
+    }
+
+    .filter-bar.sheet-open {
+        transform: translateY(0);
+        pointer-events: all;
+        visibility: visible;
+    }
+
+    /* Sheet header: drag handle + title + close */
+    .filter-bar-sheet-head {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex-shrink: 0;
+        padding-top: 0.75rem;
+    }
+
+    .filter-bar-sheet-handle {
+        width: 36px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 2px;
+        margin: 0 auto;
+    }
+
+    .filter-bar-sheet-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .filter-bar-sheet-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .filter-bar-sheet-close {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+    }
+
+    .filter-bar-sheet-close:hover {
+        color: white;
+    }
+
+    /* Hide the search inside the sheet (search is in mob-row) */
+    .filter-bar .fb-search-wrap {
+        display: none;
+    }
+
+    /* Show all groups full width */
+    .fb-group {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .fb-actions {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+
+    .fb-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Backdrop */
+    .filter-sheet-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 500;
+    }
+
+    .filter-sheet-backdrop.active {
+        display: block;
+    }
+
+    .stock-grid {
+        grid-template-columns: 1fr;
+    }
+}

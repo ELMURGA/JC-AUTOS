@@ -1,0 +1,877 @@
+/*
+  JC Autos de Ocasión — Global Shared Styles
+  Variables, Reset, Components: Navbar, Footer, Buttons, Car Cards
+*/
+
+/* 
+  JC Autos de Ocasión - Theme & Variables
+  Modern Dark/Gold Premium Aesthetic
+*/
+
+:root {
+    /* Color Palette */
+    --bg-main: #0a0a0c;
+    --bg-surface: #141418;
+    --bg-surface-elevated: #1e1e24;
+
+    --accent-primary: #d4a843;
+    /* Premium Gold */
+    --accent-primary-hover: #e6bd5c;
+    --accent-secondary: #0088ff;
+    /* Electric Blue */
+
+    --whatsapp-green: #25D366;
+    --whatsapp-hover: #20bd5a;
+
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0ab;
+    --text-muted: #666670;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(20, 20, 24, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.05);
+
+    /* Typography */
+    --font-main: 'Outfit', sans-serif;
+
+    /* Spacings */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 5rem;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.section {
+    padding: var(--space-6) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-5);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Utilities */
+.text-gradient {
+    background: linear-gradient(135deg, #f5e6b8, var(--accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(212, 168, 67, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid rgba(212, 168, 67, 0.3);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge-premium {
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.2), rgba(212, 168, 67, 0.1));
+    color: #f5d77a;
+    border-color: rgba(212, 168, 67, 0.4);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), #c49935);
+    color: #0a0a0c;
+    box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-primary-hover), #d4a843);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 168, 67, 0.4);
+}
+
+.btn-whatsapp {
+    background-color: var(--whatsapp-green);
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background-color: var(--whatsapp-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Logo Image */
+.logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: var(--space-2);
+}
+
+.hero-logo {
+    height: 160px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: var(--space-4);
+    filter: drop-shadow(0 4px 12px rgba(212, 168, 67, 0.3));
+}
+
+/* Navbar - Floating Glass Pill */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-3) var(--space-4);
+    transition: all var(--transition-slow);
+    pointer-events: none;
+}
+
+.nav-pill {
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: 0.65rem 2rem;
+    background: rgba(10, 10, 12, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 100px;
+    border: 1px solid rgba(212, 168, 67, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+}
+
+.navbar.scrolled .nav-pill {
+    background: rgba(10, 10, 12, 0.85);
+    border-color: rgba(212, 168, 67, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 168, 67, 0.08);
+    padding: 0.55rem 2rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+    padding: 0.4rem 1rem;
+    letter-spacing: 0.3px;
+    transition: all var(--transition-normal);
+}
+
+.nav-link:hover {
+    color: var(--accent-primary);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    transition: transform var(--transition-normal);
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Nav CTA Link */
+.nav-link-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.2), rgba(212, 168, 67, 0.05));
+    border: 1px solid rgba(212, 168, 67, 0.5);
+    border-radius: 100px;
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.nav-link-cta:hover {
+    background: var(--accent-primary);
+    color: #050505;
+    box-shadow: 0 0 20px rgba(212, 168, 67, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Gold dot separators */
+.nav-dot {
+    width: 3px;
+    height: 3px;
+    background: rgba(212, 168, 67, 0.4);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Vertical separator before phone */
+.nav-separator {
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 168, 67, 0.3), transparent);
+    margin: 0 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Phone link with glow */
+.nav-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    background: rgba(212, 168, 67, 0.1);
+    border: 1px solid rgba(212, 168, 67, 0.2);
+    transition: all var(--transition-normal);
+    letter-spacing: 0.3px;
+}
+
+.nav-phone:hover {
+    background: rgba(212, 168, 67, 0.18);
+    border-color: rgba(212, 168, 67, 0.4);
+    box-shadow: 0 0 15px rgba(212, 168, 67, 0.15);
+    color: #f5d77a;
+    transform: translateY(-1px);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Mobile Menu - Fullscreen Overlay */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+    pointer-events: all;
+    visibility: visible;
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.mobile-menu-close:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.mobile-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.1rem;
+    font-size: clamp(2rem, 10.5vw, 3.2rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.18);
+    border-bottom: none;
+    padding: 0.55rem 0;
+    transition: color 0.2s ease;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.mobile-link:hover {
+    color: white;
+}
+
+.mobile-link-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 0.08em;
+    display: inline-block;
+    transform: translateY(-0.35em);
+    min-width: 1.8ch;
+}
+
+.mobile-menu-footer {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    right: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.mobile-menu-phone {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    transition: opacity var(--transition-fast);
+}
+
+.mobile-menu-phone:hover {
+    opacity: 0.8;
+}
+
+/* ── Car Cards (shared) ── */
+.car-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(212, 168, 67, 0.15);
+    border-color: rgba(212, 168, 67, 0.2);
+}
+
+.car-image-wrapper {
+    position: relative;
+    padding-top: 66%;
+    overflow: hidden;
+    background: var(--bg-surface-elevated);
+}
+
+.car-image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform var(--transition-slow);
+}
+
+.car-card:hover .car-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Car placeholder for missing images */
+.car-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, var(--bg-surface-elevated), #1a1a24);
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.car-placeholder i {
+    opacity: 0.4;
+}
+
+.car-tags {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.car-content {
+    padding: var(--space-3);
+}
+
+.car-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.car-price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    margin-bottom: 0.25rem;
+}
+
+.car-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-2);
+}
+
+.car-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+
+/* ── WhatsApp Float + Footer + Animations ── */
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--whatsapp-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    transition: all var(--transition-normal);
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+    }
+
+    100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    }
+}
+
+/* Footer - Toonboom Style */
+.footer {
+    background-color: #050505;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(212, 168, 67, 0.1);
+}
+
+.footer-huge-text {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(8rem, 20vw, 25rem);
+    font-weight: 800;
+    color: var(--accent-primary);
+    opacity: 0.15;
+    white-space: nowrap;
+    line-height: 0.8;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-6) var(--space-4) var(--space-3);
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: var(--space-3);
+}
+
+.footer-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.footer-info-item i {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.footer-info-item a:hover {
+    color: var(--accent-primary);
+}
+
+.footer-links-grid {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4);
+}
+
+.footer-link-col h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-link-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-link-col ul li a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+}
+
+.footer-link-col ul li a:hover {
+    color: var(--accent-primary);
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    transition: all var(--transition-normal);
+}
+
+.footer-socials a:hover {
+    background: var(--accent-primary);
+    color: #050505;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.footer-legal-links a {
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.footer-legal-links a:hover {
+    color: white;
+}
+
+/* Base animations for JS observers */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ── Responsive Global ── */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .footer-huge-text {
+        font-size: clamp(3rem, 18vw, 5rem);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+
+    .footer-legal-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem 1.25rem;
+        font-size: 0.8rem;
+    }
+
+    .footer-content {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-2);
+    }
+
+    .footer-content {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .section {
+        padding: var(--space-4) 0;
+    }
+}
+
+/* ── Page Header (stock + inner pages) ── */
+.page-header {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    text-align: center;
+    background: linear-gradient(to bottom, #0a0a0c, #141418);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: var(--space-2);
+}
+
