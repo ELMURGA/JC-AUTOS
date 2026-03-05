@@ -48,19 +48,6 @@
         ? 'IVA deducible para empresas y autónomos'
         : 'Precio de venta al público — IVA incluido';
 
-    // Badges galería
-    const badgeContainer = document.getElementById('galleryBadges');
-    if (car.ivaDed) {
-        const b = document.createElement('span');
-        b.className = 'badge';
-        b.textContent = 'IVA DED.';
-        badgeContainer.appendChild(b);
-    }
-    const bp = document.createElement('span');
-    bp.className = 'badge badge-premium';
-    bp.textContent = 'PREMIUM';
-    badgeContainer.appendChild(bp);
-
     // Tag IVA en detail tags
     const tagIva = document.getElementById('tagIva');
     if (car.ivaDed) {
