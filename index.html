@@ -25,7 +25,14 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
-        <div class="nav-pill">
+        <div class="nav-inner">
+            <a href="#inicio" class="nav-brand">
+                <img src="./assets/logo_nuevo.webp" alt="JC Autos" class="nav-brand-logo">
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">JC Autos</span>
+                    <span class="nav-brand-sub">de Ocasión</span>
+                </div>
+            </a>
             <div class="nav-links" id="navLinks">
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <span class="nav-dot"></span>
@@ -33,11 +40,17 @@
                 <span class="nav-dot"></span>
                 <a href="#servicios" class="nav-link">Servicios</a>
                 <a href="#nosotros" class="nav-link">Nosotros</a>
-                <a href="pages/contacto.html" class="nav-link-cta">Contacto</a>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
-                <i data-lucide="menu"></i>
-            </button>
+            <div class="nav-actions">
+                <a href="tel:+34610090974" class="nav-phone">
+                    <i data-lucide="phone" size="13"></i>
+                    610 090 974
+                </a>
+                <a href="pages/contacto.html" class="nav-link-cta">Contacto</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
@@ -86,10 +99,7 @@
         <section id="stock" class="section">
             <div class="container">
                 <div class="section-header">
-                    <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-bottom:0.5rem;">
-                        <span class="badge badge-premium" style="font-size:0.7rem; letter-spacing:0.12em;">✦ SELECCIÓN ESPECIAL</span>
-                    </div>
-                    <h2 class="section-title">Lo Más <span class="text-gradient">Destacado</span></h2>
+                        <h2 class="section-title">Lo Más <span class="text-gradient">Destacado</span></h2>
                     <p class="section-subtitle">Una selección de los vehículos más exclusivos de nuestro stock.<br>Todos revisados, con IVA deducible incluido y garantía.</p>
                 </div>
                 <div class="car-grid">
@@ -98,9 +108,7 @@
                     <article class="car-card animate-on-scroll">
                         <div class="car-image-wrapper">
                             <img src="./assets/car6_g63.webp" alt="Mercedes G 63 AMG">
-                            <div class="car-tags">
-                                <span class="badge badge-premium">Premium</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">Mercedes G 63 AMG</h3>
@@ -121,11 +129,7 @@
                     <article class="car-card animate-on-scroll" style="transition-delay: 0.05s;">
                         <div class="car-image-wrapper">
                             <div class="car-placeholder"><i data-lucide="car" size="48"></i><span>Audi Q7</span></div>
-                            <div class="car-tags">
-                                <span class="badge"
-                                    style="background: rgba(0, 136, 255, 0.2); color: var(--accent-secondary); border-color: rgba(0, 136, 255, 0.3);">7
-                                    Plazas</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">Audi Q7 S line TDI</h3>
@@ -147,9 +151,7 @@
                         <div class="car-image-wrapper">
                             <div class="car-placeholder"><i data-lucide="car" size="48"></i><span>VW Touareg</span>
                             </div>
-                            <div class="car-tags">
-                                <span class="badge">R-Line</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">Volkswagen Touareg R-Line</h3>
@@ -170,10 +172,7 @@
                     <article class="car-card animate-on-scroll" style="transition-delay: 0.15s;">
                         <div class="car-image-wrapper">
                             <img src="./assets/car7_bmw_x3.webp" alt="BMW X3 xDrive20d">
-                            <div class="car-tags">
-                                <span class="badge"
-                                    style="background: rgba(0, 136, 255, 0.2); color: var(--accent-secondary); border-color: rgba(0, 136, 255, 0.3);">xDrive</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">BMW X3 xDrive20d</h3>
@@ -194,9 +193,7 @@
                     <article class="car-card animate-on-scroll" style="transition-delay: 0.2s;">
                         <div class="car-image-wrapper">
                             <img src="./assets/car4_mini_jcw.webp" alt="Mini John Cooper Works">
-                            <div class="car-tags">
-                                <span class="badge badge-premium">JCW</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">Mini John Cooper Works</h3>
@@ -238,11 +235,7 @@
                     <article class="car-card animate-on-scroll" style="transition-delay: 0.3s;">
                         <div class="car-image-wrapper">
                             <img src="./assets/car1_rifter.webp" alt="Peugeot Rifter GT">
-                            <div class="car-tags">
-                                <span class="badge"
-                                    style="background: rgba(0, 136, 255, 0.2); color: var(--accent-secondary); border-color: rgba(0, 136, 255, 0.3);">7
-                                    Plazas</span>
-                            </div>
+                            <div class="car-tags"></div>
                         </div>
                         <div class="car-content">
                             <h3 class="car-title">Peugeot Rifter GT</h3>

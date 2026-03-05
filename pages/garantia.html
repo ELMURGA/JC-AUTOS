@@ -24,19 +24,32 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar scrolled" id="navbar">
-        <div class="nav-pill">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/logo_nuevo.webp" alt="JC Autos" class="nav-brand-logo">
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">JC Autos</span>
+                    <span class="nav-brand-sub">de Ocasión</span>
+                </div>
+            </a>
             <div class="nav-links" id="navLinks">
-                <a href="../index.html#inicio" class="nav-link">Inicio</a>
+                <a href="../index.html" class="nav-link">Inicio</a>
                 <span class="nav-dot"></span>
                 <a href="stock.html" class="nav-link">Stock</a>
                 <span class="nav-dot"></span>
                 <a href="../index.html#servicios" class="nav-link">Servicios</a>
                 <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
-                <a href="contacto.html" class="nav-link-cta">Contacto</a>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
-                <i data-lucide="menu"></i>
-            </button>
+            <div class="nav-actions">
+                <a href="tel:+34610090974" class="nav-phone">
+                    <i data-lucide="phone" size="13"></i>
+                    610 090 974
+                </a>
+                <a href="contacto.html" class="nav-link-cta">Contacto</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
@@ -77,7 +90,6 @@
                 <div
                     style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
                     <h2 style="font-size: 2rem; color: var(--accent-primary);">Cobertura Premium 12 Meses</h2>
-                    <span class="badge badge-premium">Incluida en el precio</span>
                 </div>
 
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Nuestra garantía está gestionada a través
