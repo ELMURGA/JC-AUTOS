@@ -62,6 +62,14 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
 });
 
+// Car cards → vehiculo
+document.querySelectorAll('.car-card[data-id]').forEach(card => {
+    card.addEventListener('click', function (e) {
+        if (e.target.closest('.btn-whatsapp')) return;
+        window.location.href = `pages/vehiculo.html?id=${card.dataset.id}`;
+    });
+});
+
 // Smooth scroll for hash links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

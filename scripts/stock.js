@@ -224,15 +224,10 @@
        Clic en la tarjeta (excepto botón WhatsApp) → vehiculo.html
        ══════════════════════════════════════════════════════════ */
     document.querySelectorAll('.car-card').forEach(card => {
-        card.style.cursor = 'pointer';
         card.addEventListener('click', function (e) {
-            // No navegar si el clic fue en el botón de WhatsApp o en la imagen (lightbox)
             if (e.target.closest('.btn-whatsapp')) return;
-            if (e.target.closest('.car-image-wrapper img')) return;
             const id = card.dataset.id;
-            if (id) {
-                window.location.href = `vehiculo.html?id=${id}`;
-            }
+            if (id) window.location.href = `vehiculo.html?id=${id}`;
         });
     });
 
