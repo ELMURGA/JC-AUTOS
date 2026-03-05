@@ -1,5 +1,5 @@
 /**
- * JC Autos de Ocasión — Datos centrales del stock
+ * JoCar Automóviles — Datos centrales del stock
  * Fuente de verdad compartida por stock.js y vehiculo.js
  */
 

@@ -22,9 +22,9 @@
     const fmtKm = n => n.toLocaleString('es-ES') + ' km';
 
     /* ── 3. SEO y título ─────────────────────────────────── */
-    document.getElementById('pageTitle').textContent = `${car.title} | JC Autos de Ocasión`;
+    document.getElementById('pageTitle').textContent = `${car.title} | JoCar Automóviles`;
     document.getElementById('pageDesc').setAttribute('content',
-        `${car.title} — ${car.subtitle}. Precio: ${fmt(car.precio)}. JC Autos de Ocasión, Dos Hermanas.`);
+        `${car.title} — ${car.subtitle}. Precio: ${fmt(car.precio)}. JoCar Automóviles, Dos Hermanas.`);
 
     /* ── 4. Breadcrumb ───────────────────────────────────── */
     document.getElementById('bcTitle').textContent = car.title;

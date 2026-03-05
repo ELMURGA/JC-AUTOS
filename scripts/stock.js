@@ -1,4 +1,4 @@
-/* JC Autos de Ocasión — Stock Filter + Lightbox */
+/* JoCar Automóviles — Stock Filter + Lightbox */
 (function () {
     'use strict';
 
