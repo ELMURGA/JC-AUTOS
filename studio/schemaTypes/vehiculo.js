@@ -79,9 +79,10 @@ export default {
         },
         {
             name: 'modelo',
-            title: 'Modelo',
+            title: 'Modelo del vehículo',
             type: 'string',
-            description: 'Ej: Touareg, Q7, X3...',
+            description: 'Nombre del modelo. Ej: Touareg, Q7, X3, 3008, Tiguan...',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'combustible',

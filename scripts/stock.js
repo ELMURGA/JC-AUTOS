@@ -27,7 +27,7 @@
     const activeFiltersContainer = document.getElementById('activeFilters');
 
     /* ── Helpers de formato ────────────────────────────────────── */
-    const fmt    = n => n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const fmt    = n => n != null ? n.toLocaleString('es-ES') + ' €' : '—';
     const fmtKm  = n => n.toLocaleString('es-ES') + ' km';
     const capFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
@@ -50,7 +50,7 @@
     /* ── Construir una tarjeta de coche ────────────────────────── */
     function buildCard(car) {
         const imgUrl = car.mainImage
-            ? sanityImg(car.mainImage, { w: 600, h: 400, fit: 'crop' })
+            ? sanityImg(car.mainImage.src, { w: 600, h: 400, fit: 'crop', hotspot: car.mainImage.hotspot })
             : null;
 
         const subtitleText = car.ivaDed ? 'IVA DEDUCIBLE INCLUIDO' : 'IVA INCLUIDO';
@@ -313,7 +313,7 @@
             precio,
             cv,
             ivaDed,
-            "mainImage": images[0].asset->url
+            "mainImage": images[0] { "src": asset->url, "hotspot": hotspot }
         }`;
 
     showLoading();

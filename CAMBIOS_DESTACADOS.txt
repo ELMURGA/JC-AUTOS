@@ -1,0 +1,102 @@
+====================================================
+ JoCar Automóviles — Resumen de cambios realizados
+ Fecha: 9 de marzo de 2026
+====================================================
+
+OBJETIVO
+--------
+Hacer que la sección "Lo Más Destacado" del index.html se actualice
+automáticamente cada semana mostrando vehículos distintos según el
+stock real disponible en Sanity CMS.
+
+
+ARCHIVOS MODIFICADOS
+--------------------
+
+1. index.html
+   - Se eliminaron las 8 tarjetas de coches hardcodeadas (estáticas).
+   - El div .car-grid se deja vacío; el contenido lo genera destacados.js.
+   - Se añadió la carga de dos scripts nuevos antes de main.js:
+       <script src="./scripts/sanity-config.js"></script>
+       <script src="./scripts/destacados.js"></script>
+
+2. styles/global.css
+   - Se añadieron los estilos necesarios para los skeletons de carga:
+       .dest-skel-img      → placeholder con la misma proporción que la imagen
+       .dest-skel-line     → líneas de texto en espera
+       .dest-skel-pulse    → animación shimmer (efecto brillo deslizante)
+       @keyframes dest-shimmer
+       .dest-empty         → mensaje cuando no hay vehículos disponibles
+
+
+ARCHIVOS NUEVOS
+---------------
+
+3. scripts/destacados.js  (nuevo)
+   Módulo IIFE que gestiona la sección "Lo Más Destacado" de forma dinámica.
+
+   Funcionamiento paso a paso:
+
+   a) Semilla semanal
+      - Calcula un número único combinando el año actual y el número
+        de semana ISO (0-52). Este número cambia automáticamente cada lunes.
+      - Ejemplo: semana 10 de 2026 → semilla 202610
+
+   b) Skeletons de carga
+      - Mientras se espera la respuesta de Sanity, se muestran 8 tarjetas
+        vacías con efecto shimmer para evitar un salto visual brusco.
+
+   c) Consulta a Sanity (GROQ)
+      - Obtiene todos los vehículos con disponible != false, ordenados
+        por fecha de creación descendente.
+      - Campos obtenidos: id, title, subtitle, combustible, año, km,
+        precio, cv, ivaDed, imagen principal.
+
+   d) Shuffle determinista (algoritmo Mulberry32)
+      - Baraja el array de vehículos usando la semilla semanal.
+      - Resultado: todos los visitantes ven los mismos 8 coches esa semana,
+        pero la semana siguiente la selección cambia automáticamente.
+      - Si hay menos de 8 coches disponibles, muestra todos los que haya.
+
+   e) Renderizado de tarjetas
+      - Genera el mismo HTML que tenían las tarjetas originales.
+      - Las imágenes se optimizan vía CDN de Sanity (600×400, recorte).
+      - El botón "Me interesa" genera el enlace de WhatsApp con el nombre
+        y precio del vehículo concreto.
+      - Los precios con ivaDed:true muestran "IVA DEDUCIBLE INCLUIDO".
+
+   f) Inicialización
+      - Registra el IntersectionObserver para la animación al hacer scroll.
+      - Registra el evento de clic en tarjeta → página vehiculo.html?id=...
+      - Regenera los iconos Lucide para los nuevos elementos del DOM.
+      - Si la petición falla o no hay coches, muestra un mensaje genérico.
+
+
+CÓMO FUNCIONA LA ROTACIÓN AUTOMÁTICA
+-------------------------------------
+No requiere ninguna acción manual ni servidor. Funciona así:
+
+  - Cada vez que un visitante abre el index.html, destacados.js
+    se ejecuta en su navegador.
+  - Calcula el número de semana actual y lo usa como semilla.
+  - Consulta el stock real de Sanity en ese momento.
+  - Baraja los coches disponibles con esa semilla y muestra los 8 primeros.
+  - La semana siguiente, la semilla cambia → diferente orden → diferentes
+    coches en portada.
+
+  Ejemplo:
+    Semana 10 → muestra coches A, C, F, G, B, H, E, D
+    Semana 11 → muestra coches C, E, A, D, H, B, G, F
+    Semana 12 → muestra coches H, B, D, A, G, C, F, E
+
+  Si un coche se vende o se marca como "disponible: false" en Sanity,
+  desaparece automáticamente sin tocar ningún archivo.
+
+
+REQUISITO PREVIO
+----------------
+El proyecto ya tenía configurado sanity-config.js con el Project ID real
+(jirw2y07). No es necesario ningún cambio adicional en la configuración
+de Sanity para que esto funcione.
+
+====================================================

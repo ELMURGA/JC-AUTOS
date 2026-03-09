@@ -61,20 +61,29 @@ async function sanityFetch(query, params = {}) {
 
 /**
  * Construye una URL optimizada de imagen Sanity (añade parámetros CDN).
- * @param {string} rawUrl  URL base del asset
- * @param {Object} opts    Opciones de transformación: w, h, fit, q
+ * - Convierte automáticamente JPG/PNG → WebP (auto=format)
+ * - Soporta recorte por punto focal (hotspot) para imágenes bien encuadradas
+ *
+ * @param {string}  rawUrl   URL base del asset de Sanity
+ * @param {Object}  opts     w, h, fit, q, hotspot ({ x, y } en rango 0-1)
  * @returns {string|null}
  */
 function sanityImg(rawUrl, opts = {}) {
     if (!rawUrl) return null;
     try {
         const url = new URL(rawUrl);
-        const { w, h, fit = 'max', q = 80, auto = 'format' } = opts;
-        if (w)    url.searchParams.set('w', w);
-        if (h)    url.searchParams.set('h', h);
+        const { w, h, fit = 'max', q = 80, auto = 'format', hotspot } = opts;
+        if (w) url.searchParams.set('w', w);
+        if (h) url.searchParams.set('h', h);
         url.searchParams.set('fit', fit);
         url.searchParams.set('q', q);
         url.searchParams.set('auto', auto);
+        // Focal point: recorta centrando en el punto marcado en el studio
+        if (hotspot && fit === 'crop') {
+            url.searchParams.set('fp-x', hotspot.x.toFixed(4));
+            url.searchParams.set('fp-y', hotspot.y.toFixed(4));
+            url.searchParams.set('crop', 'focalpoint');
+        }
         return url.toString();
     } catch {
         return rawUrl;

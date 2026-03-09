@@ -16,7 +16,7 @@
     }
 
     /* ── 2. Helpers de formato ───────────────────────────── */
-    const fmt   = n => n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const fmt   = n => n != null ? n.toLocaleString('es-ES') + ' €' : '—';
     const fmtKm = n => n.toLocaleString('es-ES') + ' km';
 
     function capitalize(str) {
@@ -44,7 +44,7 @@
             plazas,
             color,
             ivaDed,
-            "images":    images[]{ "src": asset->url, alt },
+            "images":    images[]{ "src": asset->url, alt, hotspot },
             description,
             "specs":     specs[]{ key, value },
             "equipment": equipment[]{ category, items }
@@ -61,7 +61,7 @@
             km,
             precio,
             cv,
-            "mainImage": images[0].asset->url
+            "mainImage": images[0] { "src": asset->url, "hotspot": hotspot }
         }`;
 
     /* ── 4. Cargar y renderizar el vehículo ──────────────── */
@@ -159,7 +159,7 @@
             }
             currentIdx = ((idx % images.length) + images.length) % images.length;
             const img = images[currentIdx];
-            // Imagen principal en alta resolución
+            // Imagen principal en alta resolución (fit:max para no recortar en vista grande)
             mainImg.src = sanityImg(img.src, { w: 1200, h: 800, fit: 'max' }) || img.src;
             mainImg.alt = img.alt || car.title;
             mainImg.style.display = 'block';
@@ -175,7 +175,7 @@
         images.forEach((img, i) => {
             const th = document.createElement('div');
             th.className = 'veh-thumb' + (i === 0 ? ' active' : '');
-            const thumbUrl = sanityImg(img.src, { w: 160, h: 110, fit: 'crop' }) || img.src;
+            const thumbUrl = sanityImg(img.src, { w: 160, h: 110, fit: 'crop', hotspot: img.hotspot }) || img.src;
             th.innerHTML = `<img src="${thumbUrl}" alt="${img.alt || car.title}" loading="lazy">`;
             th.addEventListener('click', () => showImage(i));
             thumbsEl.appendChild(th);
@@ -354,7 +354,7 @@
         if (similares.length > 0) {
             similares.forEach(s => {
                 const imgSrc = s.mainImage
-                    ? sanityImg(s.mainImage, { w: 400, h: 260, fit: 'crop' })
+                    ? sanityImg(s.mainImage.src, { w: 400, h: 260, fit: 'crop', hotspot: s.mainImage.hotspot })
                     : null;
                 const card = document.createElement('a');
                 card.className = 'similar-card';

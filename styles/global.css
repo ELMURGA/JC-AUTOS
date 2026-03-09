@@ -630,6 +630,40 @@ img {
 }
 
 
+/* ── Skeletons sección Destacados ── */
+.dest-skel-img {
+    padding-top: 66%;
+    border-radius: 0;
+}
+
+.dest-skel-line {
+    border-radius: 6px;
+}
+
+.dest-skel-pulse {
+    background: linear-gradient(
+        90deg,
+        var(--bg-surface-elevated) 25%,
+        #2a2a38 50%,
+        var(--bg-surface-elevated) 75%
+    );
+    background-size: 200% 100%;
+    animation: dest-shimmer 1.6s infinite;
+}
+
+@keyframes dest-shimmer {
+    0%   { background-position:  200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.dest-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+}
+
+
 /* ── WhatsApp Float + Footer + Animations ── */
 /* WhatsApp Floating Button */
 .whatsapp-float {
