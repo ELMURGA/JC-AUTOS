@@ -1,0 +1,122 @@
+═══════════════════════════════════════════════════════════════
+  GUÍA DE CONFIGURACIÓN — SANITY CMS PARA JOCAR AUTOMÓVILES
+═══════════════════════════════════════════════════════════════
+
+
+PASO 1 — CREAR CUENTA Y PROYECTO EN SANITY
+───────────────────────────────────────────
+1. Ve a https://sanity.io y crea una cuenta gratuita.
+2. Pulsa "Create new project".
+3. Ponle el nombre que quieras (ej: "JoCar Automóviles").
+4. Elige el dataset "production" (viene por defecto).
+5. Una vez creado, ve a:
+      https://sanity.io/manage → tu proyecto → Settings
+   Y copia tu PROJECT ID (tiene este aspecto: abc12de3).
+
+
+PASO 2 — PONER EL PROJECT ID EN LOS DOS ARCHIVOS
+──────────────────────────────────────────────────
+Abre estos dos archivos y sustituye TU_PROJECT_ID por el ID real:
+
+  A) /scripts/sanity-config.js  (línea 17)
+     ─────────────────────────────────────
+     ANTES:  projectId: 'TU_PROJECT_ID',
+     DESPUÉS: projectId: 'abc12de3',       ← tu ID real
+
+
+  B) /studio/sanity.config.js  (línea 15)
+     ──────────────────────────────────────
+     ANTES:  projectId: 'TU_PROJECT_ID',
+     DESPUÉS: projectId: 'abc12de3',       ← el mismo ID
+
+
+PASO 3 — CONFIGURAR CORS (MUY IMPORTANTE)
+──────────────────────────────────────────
+Sin esto la web no puede consultar datos a Sanity.
+
+  1. Ve a: https://sanity.io/manage
+  2. Abre tu proyecto → pestaña "API" → sección "CORS Origins"
+  3. Añade TODAS estas URLs:
+
+       http://localhost
+       http://localhost:3000
+       http://127.0.0.1
+       http://127.0.0.1:5500
+       https://TU-DOMINIO.com          ← cuando lo tengas
+
+  4. Marca la casilla "Allow credentials" solo si la necesitas
+     (para esta web NO hace falta, las lecturas son públicas).
+
+
+PASO 4 — INSTALAR Y ARRANCAR SANITY STUDIO
+───────────────────────────────────────────
+El Studio es el panel de administración donde añades los coches.
+
+  1. Abre una terminal y entra en la carpeta studio:
+        cd /ruta/a/jocar/studio
+
+  2. Instala las dependencias (solo la primera vez):
+        npm install
+
+  3. Arranca el studio en local:
+        npm run dev
+
+  4. Se abrirá en:  http://localhost:3333
+     Inicia sesión con tu cuenta de Sanity.
+
+
+PASO 5 — AÑADIR VEHÍCULOS EN EL STUDIO
+────────────────────────────────────────
+  1. En el panel izquierdo verás "Vehículo", pulsa el botón "+".
+  2. Rellena los campos:
+       - Título del vehículo   → ej: Volkswagen Touareg R-Line
+       - Slug                  → se genera automático al guardar
+       - Marca / Combustible   → selecciona del desplegable
+       - Año, Kilómetros, Precio, CV
+       - Fotos                 → arrastra las imágenes (sube todas)
+       - Descripción
+       - Ficha técnica         → pares campo/valor extra
+       - Equipamiento          → por categorías
+  3. Activa el toggle "Disponible" para que aparezca en el stock.
+  4. Pulsa "Publish" (botón verde) para publicarlo.
+
+  ► La primera foto subida será la imagen principal en la lista de stock.
+  ► Con "Disponible" desactivado puedes ocultar el coche sin borrarlo.
+
+
+PASO 6 — PUBLICAR EL STUDIO (OPCIONAL)
+────────────────────────────────────────
+Si quieres acceder al panel desde cualquier sitio (sin tener
+el ordenador encendido con npm run dev):
+
+  1. Desde la carpeta studio:
+        npm run deploy
+
+  2. Elige un nombre de subdominio (ej: jocar-cms).
+     Quedará en: https://jocar-cms.sanity.studio
+
+
+PASO 7 — DESPLEGAR LA WEB
+──────────────────────────
+Una vez configurado el Project ID y los CORS, la web funciona
+en cualquier hosting estático:
+
+  - Netlify / Vercel / GitHub Pages: arrastra la carpeta raíz
+    o conecta el repositorio.
+  - Hosting propio: sube los archivos por FTP.
+  - Recuerda añadir el dominio final en los CORS Origins (Paso 3).
+
+
+───────────────────────────────────────────────────────────────
+  RESUMEN RÁPIDO — CHECKLIST
+───────────────────────────────────────────────────────────────
+  [ ] Cuenta en sanity.io creada
+  [ ] Proyecto creado, Project ID copiado
+  [ ] scripts/sanity-config.js → projectId actualizado
+  [ ] studio/sanity.config.js  → projectId actualizado
+  [ ] CORS Origins configurados en sanity.io/manage
+  [ ] npm install ejecutado en /studio
+  [ ] npm run dev probado y studio funcionando
+  [ ] Primer vehículo añadido y publicado en el studio
+  [ ] Web abierta en el navegador → coches aparecen en el stock
+───────────────────────────────────────────────────────────────
