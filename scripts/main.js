@@ -49,6 +49,16 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
+function revealVisible() {
+    document.querySelectorAll('.animate-on-scroll:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+            observer.unobserve(el);
+        }
+    });
+}
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -62,21 +72,62 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
 });
 
-// Car cards → vehiculo
+// Revelar elementos ya visibles al cargar (p.ej. al llegar desde otra página con #hash)
+window.addEventListener('load', () => {
+    revealVisible();
+});
+
+// Car cards → vehiculo (detecta si estamos en raíz o en pages/)
 document.querySelectorAll('.car-card[data-id]').forEach(card => {
     card.addEventListener('click', function (e) {
         if (e.target.closest('.btn-whatsapp')) return;
-        window.location.href = `pages/vehiculo.html?id=${card.dataset.id}`;
+        const inPages = window.location.pathname.includes('/pages/');
+        const prefix  = inPages ? '' : 'pages/';
+        window.location.href = `${prefix}vehiculo.html?id=${card.dataset.id}`;
     });
 });
 
-// Smooth scroll for hash links
+// Smooth scroll for hash links (offset by navbar height)
+function scrollToHash(hash, behavior = 'smooth') {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const navbarH = document.getElementById('navbar')?.offsetHeight || 80;
+    const top = target.getBoundingClientRect().top + window.scrollY - navbarH;
+    window.scrollTo({ top, behavior });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const hash = this.getAttribute('href');
+        // Evitar SyntaxError con '#' suelto (selector inválido)
+        if (!hash || hash === '#') return;
+        try {
+            if (document.querySelector(hash)) {
+                e.preventDefault();
+                scrollToHash(hash);
+            }
+        } catch (_) { /* selector inválido, dejar navegación por defecto */ }
     });
+});
+
+// Re-scroll tras carga completa: corrige el desfase causado por contenido dinámico
+// (los coches se cargan de Sanity y expanden la grid DESPUÉS del scroll inicial)
+if (window.location.hash && window.location.hash !== '#') {
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            try { scrollToHash(window.location.hash, 'instant'); } catch (_) {}
+            revealVisible();
+        }, 50);
+    });
+}
+
+// bfcache: al navegar con el botón atrás/adelante el navegador restaura la página
+// desde caché sin re-ejecutar los scripts. Si un menú/lightbox estaba abierto al
+// salir, document.body.overflow quedaría bloqueado. Lo reseteamos aquí.
+window.addEventListener('pageshow', function (event) {
+    if (!event.persisted) return;  // carga normal, nada que hacer
+    document.body.style.overflow = '';
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+    }
 });

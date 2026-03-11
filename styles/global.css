@@ -57,6 +57,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -540,7 +541,7 @@ img {
 
 .car-image-wrapper {
     position: relative;
-    padding-top: 66%;
+    padding-top: 75%;
     overflow: hidden;
     background: var(--bg-surface-elevated);
 }
@@ -554,11 +555,13 @@ img {
     object-fit: contain;
     object-position: center center;
     transition: transform var(--transition-slow);
-    background: var(--bg-surface);
+    background: var(--bg-surface-elevated);
+    padding: 4px;
+    box-sizing: border-box;
 }
 
 .car-card:hover .car-image-wrapper img {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 /* Car placeholder for missing images */
@@ -949,20 +952,45 @@ img {
 
 /* ── Page Header (stock + inner pages) ── */
 .page-header {
-    padding-top: 150px;
-    padding-bottom: 50px;
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: 70px;
     text-align: center;
-    background: linear-gradient(to bottom, #0a0a0c, #141418);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(212, 168, 67, 0.12);
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/hero_marcas.webp');
+    background-size: cover;
+    background-position: center 40%;
+    z-index: 0;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 7, 0.78) 0%,
+        rgba(10, 10, 14, 0.88) 60%,
+        rgba(10, 10, 14, 1) 100%
+    );
+    z-index: 1;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
 }
 
 .page-title {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: var(--space-2);
-    background: linear-gradient(135deg, #ffffff 0%, #d9c89a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 

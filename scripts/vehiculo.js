@@ -65,22 +65,24 @@
         }`;
 
     /* ── 4. Cargar y renderizar el vehículo ──────────────── */
-    Promise.all([
-        sanityFetch(GROQ_CAR,     { id: carId }),
-        sanityFetch(GROQ_SIMILAR, { id: carId }),
-    ])
-    .then(([car, allOthers]) => {
-        if (!car) {
+    // La carga principal y los similares se hacen por separado para que
+    // un fallo en la consulta de similares NO redirija toda la página.
+    sanityFetch(GROQ_CAR, { id: carId })
+        .then(car => {
+            if (!car) {
+                window.location.href = 'stock.html';
+                return;
+            }
+            renderCar(car);
+            // Similares: independiente, un error no afecta la página principal
+            sanityFetch(GROQ_SIMILAR, { id: carId })
+                .then(allOthers => renderSimilar(car, allOthers || []))
+                .catch(() => renderSimilar(car, []));
+        })
+        .catch(err => {
+            console.error('[JoCar] Error cargando vehículo:', err);
             window.location.href = 'stock.html';
-            return;
-        }
-        renderCar(car);
-        renderSimilar(car, allOthers || []);
-    })
-    .catch(err => {
-        console.error('[JoCar] Error cargando vehículo:', err);
-        window.location.href = 'stock.html';
-    });
+        });
 
     /* ════════════════════════════════════════════════════════
        RENDER PRINCIPAL
@@ -425,6 +427,15 @@
         if (e.target === lightbox) closeLightbox();
     });
     document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+
+    /* ════════════════════════════════════════════════════════
+       BFCACHE: resetear estado al volver con botón atrás/adelante
+       ════════════════════════════════════════════════════════ */
+    window.addEventListener('pageshow', function (event) {
+        if (!event.persisted) return;
+        document.body.style.overflow = '';
+        window.closeLightbox();
+    });
 
     /* ════════════════════════════════════════════════════════
        HELPER scrollToCalc (usado desde el HTML)

@@ -51,7 +51,7 @@
     /* ── Construir una tarjeta de coche ────────────────────────── */
     function buildCard(car) {
         const imgUrl = car.mainImage
-            ? sanityImg(car.mainImage.src, { w: 600, h: 400, fit: 'crop', hotspot: car.mainImage.hotspot })
+            ? sanityImg(car.mainImage.src, { w: 600, h: 450, fit: 'max', hotspot: car.mainImage.hotspot })
             : null;
 
         const subtitleText = car.ivaDed ? 'IVA DEDUCIBLE INCLUIDO' : 'IVA INCLUIDO';
@@ -300,7 +300,14 @@
     };
 
     /* ════════════════════════════════════════════════════════════
-       CARGA DESDE SANITY
+       BFCACHE: resetear estado al volver con botón atrás/adelante
+       ════════════════════════════════════════════════════════════ */
+    window.addEventListener('pageshow', function (event) {
+        if (!event.persisted) return;
+        document.body.style.overflow = '';
+        closeMobSheet();
+        window.closeLightbox();
+    });
        ════════════════════════════════════════════════════════════ */
     const GROQ_STOCK = `
         *[_type == "vehiculo" && disponible != false] | order(_createdAt desc) {
