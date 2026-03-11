@@ -11,7 +11,7 @@
 (function () {
     'use strict';
 
-    const CARD_COUNT  = 8;
+    const CARD_COUNT  = 6;
     const WA_NUMBER   = '34610090974';
 
     // ── Semilla semanal ──────────────────────────────────────────────────────
