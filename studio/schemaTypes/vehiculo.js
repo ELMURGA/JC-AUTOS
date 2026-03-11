@@ -176,8 +176,9 @@ export default {
         {
             name: 'images',
             title: 'Fotos del vehículo',
-            description: 'Sube todas las fotos. La primera será la imagen principal en el stock.',
+            description: 'Arrastra varias fotos a la vez o usa el botón. La primera será la imagen principal en el stock.',
             type: 'array',
+            options: { layout: 'grid' },
             of: [
                 {
                     type: 'image',
@@ -202,35 +203,13 @@ export default {
             rows: 5,
         },
 
-        // ── Equipamiento por categorías ────────────────────────
+        // ── Equipamiento de serie ──────────────────────────────
         {
             name: 'equipment',
             title: 'Equipamiento de serie',
+            description: 'Añade cada elemento de equipamiento. Ej: Techo panorámico, A/C automático, Cámara trasera...',
             type: 'array',
-            of: [
-                {
-                    type: 'object',
-                    name: 'equipmentCategory',
-                    title: 'Categoría de equipamiento',
-                    fields: [
-                        {
-                            name: 'category',
-                            title: 'Nombre de la categoría',
-                            type: 'string',
-                            description: 'Ej: Confort & Tecnología, Seguridad, Exterior...',
-                        },
-                        {
-                            name: 'items',
-                            title: 'Elementos',
-                            type: 'array',
-                            of: [{ type: 'string' }],
-                        },
-                    ],
-                    preview: {
-                        select: { title: 'category' },
-                    },
-                },
-            ],
+            of: [{ type: 'string' }],
         },
     ],
 

@@ -46,8 +46,7 @@
             ivaDed,
             "images":    images[]{ "src": asset->url, alt, hotspot },
             description,
-            "specs":     specs[]{ key, value },
-            "equipment": equipment[]{ category, items }
+            "equipment": equipment[]
         }`;
 
     const GROQ_SIMILAR = `
@@ -216,71 +215,14 @@
 
         showImage(0);
 
-        /* ── Ficha técnica ───────────────────────────────────── */
-        const specsTable = document.getElementById('specsTable');
-        const baseSpecs = {
-            'Año':        car.año,
-            'Kilómetros': fmtKm(car.km),
-            'Potencia':   `${car.cv} CV`,
-            'Combustible': capitalize(car.combustible),
-            'Cambio':     car.cambio,
-            'Tracción':   car.traccion,
-            'Cilindrada': car.cilindrada ? `${car.cilindrada} cc` : null,
-            'Puertas':    car.puertas,
-            'Plazas':     car.plazas,
-            'Color':      car.color,
-        };
-
-        // Specs base + specs de Sanity
-        const extraSpecs = {};
-        (car.specs || []).forEach(s => { if (s.key) extraSpecs[s.key] = s.value; });
-        const allSpecs = { ...baseSpecs, ...extraSpecs };
-
-        Object.entries(allSpecs).forEach(([key, val]) => {
-            if (!val && val !== 0) return;
-            const row = document.createElement('div');
-            row.className = 'spec-row';
-            row.innerHTML = `<span class="spec-key">${key}</span><span class="spec-val">${val}</span>`;
-            specsTable.appendChild(row);
-        });
-
-        /* ── Equipamiento por categoría ──────────────────────── */
+        /* ── Equipamiento de serie ────────────────────────────── */
         const equipGrid = document.getElementById('equipmentGrid');
-        const catIcons  = {
-            'Confort & Tecnología': 'armchair',
-            'Seguridad':            'shield',
-            'Exterior':             'star',
-            'Audio':                'music-2',
-            'Interior':             'layout-dashboard',
-            'Iluminación':          'lamp',
-            'Asistencias conducción': 'navigation',
-            'Conectividad':         'wifi',
-        };
 
         if (car.equipment && car.equipment.length > 0) {
-            car.equipment.forEach((cat, idx) => {
-                const icon = catIcons[cat.category] || 'settings';
-                const section = document.createElement('div');
-                section.className = 'equip-category' + (idx < 2 ? ' open' : '');
-                section.innerHTML = `
-                    <div class="equip-cat-header" role="button" tabindex="0">
-                        <span class="equip-cat-name">
-                            <i data-lucide="${icon}" size="15"></i>
-                            ${cat.category}
-                        </span>
-                        <span class="equip-cat-count">${(cat.items || []).length}</span>
-                        <i data-lucide="chevron-down" size="16" class="equip-cat-chevron"></i>
-                    </div>
-                    <div class="equip-items">
-                        ${(cat.items || []).map(item => `<div class="equip-item">${item}</div>`).join('')}
-                    </div>`;
-                const header = section.querySelector('.equip-cat-header');
-                header.addEventListener('click', () => section.classList.toggle('open'));
-                header.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') section.classList.toggle('open');
-                });
-                equipGrid.appendChild(section);
-            });
+            equipGrid.innerHTML = car.equipment
+                .map(item => `<div class="equip-item"><i data-lucide="check" size="14"></i> ${item}</div>`)
+                .join('');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         } else {
             equipGrid.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Información de equipamiento no disponible.</p>';
         }
