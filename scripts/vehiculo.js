@@ -322,6 +322,19 @@
             document.getElementById('calcTotal').textContent    = fmt(Math.round(totalPagado));
             document.getElementById('previewMonthly').textContent = fmt(Math.round(cuota));
 
+            // Actualizar botón WhatsApp de la calculadora con los datos reales
+            const waFinMsg = encodeURIComponent(
+                `¡Hola! Estoy interesado en financiar el ${car.title} ${car.año} (${fmt(car.precio)}).\n` +
+                `He calculado las siguientes condiciones:\n` +
+                `- Capital a financiar: ${fmt(capital)}\n` +
+                `- Plazo: ${n} meses\n` +
+                `- TIN: ${parseFloat(tinEl.value).toFixed(2).replace('.', ',')}% / TAE: ${tae.toFixed(2).replace('.', ',')}%\n` +
+                `- Cuota mensual aprox.: ${fmt(Math.round(cuota))}/mes\n` +
+                `¿Podéis confirmarme disponibilidad y condiciones?`
+            );
+            const calcBtn = document.getElementById('calcWhatsApp');
+            if (calcBtn) calcBtn.href = `https://wa.me/34610090974?text=${waFinMsg}`;
+
             return Math.round(cuota);
         }
 
