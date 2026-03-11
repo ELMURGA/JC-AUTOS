@@ -51,7 +51,7 @@
     /* ── Construir una tarjeta de coche ────────────────────────── */
     function buildCard(car) {
         const imgUrl = car.mainImage
-            ? sanityImg(car.mainImage.src, { w: 600, h: 450, fit: 'max', hotspot: car.mainImage.hotspot })
+            ? sanityImg(car.mainImage.src, { w: 600, h: 450, fit: 'crop', hotspot: car.mainImage.hotspot })
             : null;
 
         const subtitleText = car.ivaDed ? 'IVA DEDUCIBLE INCLUIDO' : 'IVA INCLUIDO';

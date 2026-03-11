@@ -70,7 +70,7 @@
     function buildCard(car, index) {
         const delay  = (index * 0.05).toFixed(2);
         const imgUrl = car.mainImage
-            ? sanityImg(car.mainImage.src, { w: 600, h: 450, fit: 'max', q: 80, hotspot: car.mainImage.hotspot })
+            ? sanityImg(car.mainImage.src, { w: 600, h: 450, fit: 'crop', q: 80, hotspot: car.mainImage.hotspot })
             : null;
 
         const imgHtml = imgUrl
