@@ -126,13 +126,16 @@
         document.getElementById('carDescription').textContent = car.description || '';
 
         /* ── WhatsApp ────────────────────────────────────────── */
-        const waText = encodeURIComponent(`¡Hola! Me interesa el ${car.title} ${car.año} a ${fmt(car.precio)} que vi en vuestra web. ¿Está disponible?`);
-        const waUrl  = `https://wa.me/34610090974?text=${waText}`;
-        document.getElementById('btnWhatsApp').href   = waUrl;
-        document.getElementById('calcWhatsApp').href  = waUrl;
-        document.getElementById('ctaWhatsApp').href   = waUrl;
-        const floatBtn = document.getElementById('floatWhatsApp');
-        if (floatBtn) floatBtn.href = waUrl;
+        try {
+            const waText = encodeURIComponent(`¡Hola! Me interesa el ${car.title} ${car.año} a ${fmt(car.precio)} que vi en vuestra web. ¿Está disponible?`);
+            const waUrl  = `https://wa.me/34610090974?text=${waText}`;
+            ['btnWhatsApp', 'calcWhatsApp', 'ctaWhatsApp', 'floatWhatsApp'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.href = waUrl;
+            });
+        } catch (e) {
+            console.warn('[JoCar] WhatsApp URL fallback activo:', e);
+        }
 
         /* ── Galería de imágenes (múltiples fotos) ───────────── */
         const images = (car.images || []).filter(img => img && img.src);
