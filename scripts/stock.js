@@ -308,6 +308,9 @@
         closeMobSheet();
         window.closeLightbox();
     });
+
+    /* ════════════════════════════════════════════════════════════
+       CARGA DE DATOS DESDE SANITY
        ════════════════════════════════════════════════════════════ */
     const GROQ_STOCK = `
         *[_type == "vehiculo" && disponible != false] | order(_createdAt desc) {
