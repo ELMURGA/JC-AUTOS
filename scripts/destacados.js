@@ -60,7 +60,7 @@
 
     function formatPrice(precio) {
         return precio != null
-            ? precio.toLocaleString('es-ES') + '\u00a0\u20ac'
+            ? Math.round(Number(precio)).toLocaleString('es-ES') + '\u00a0\u20ac'
             : '\u2014';
     }
 

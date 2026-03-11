@@ -103,6 +103,10 @@ img {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: var(--space-2);
+    background: linear-gradient(135deg, #ffffff 0%, #d9c89a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .section-subtitle {
@@ -114,7 +118,7 @@ img {
 
 /* Utilities */
 .text-gradient {
-    background: linear-gradient(135deg, #f5e6b8, var(--accent-primary));
+    background: linear-gradient(135deg, #ffe87a 0%, #d4a843 45%, #a87520 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -269,7 +273,7 @@ img {
 }
 
 .nav-brand-logo {
-    height: 36px;
+    height: 60px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.25));
@@ -547,9 +551,10 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center center;
     transition: transform var(--transition-slow);
+    background: var(--bg-surface);
 }
 
 .car-card:hover .car-image-wrapper img {
@@ -955,5 +960,9 @@ img {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: var(--space-2);
+    background: linear-gradient(135deg, #ffffff 0%, #d9c89a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 

@@ -131,6 +131,8 @@
         document.getElementById('btnWhatsApp').href   = waUrl;
         document.getElementById('calcWhatsApp').href  = waUrl;
         document.getElementById('ctaWhatsApp').href   = waUrl;
+        const floatBtn = document.getElementById('floatWhatsApp');
+        if (floatBtn) floatBtn.href = waUrl;
 
         /* ── Galería de imágenes (múltiples fotos) ───────────── */
         const images = (car.images || []).filter(img => img && img.src);
@@ -313,7 +315,7 @@
             document.getElementById('calcPlazoRes').textContent = `${n} meses`;
             document.getElementById('calcTaeRes').textContent   =
                 `TIN ${parseFloat(tinEl.value).toFixed(2).replace('.', ',')}% / TAE ${tae.toFixed(2).replace('.', ',')}%`;
-            document.getElementById('calcMonthly').textContent  = `${fmt(cuota)}/mes`;
+            document.getElementById('calcMonthly').textContent  = `${fmt(Math.round(cuota))}/mes`;
             document.getElementById('calcTotal').textContent    = fmt(Math.round(totalPagado));
             document.getElementById('previewMonthly').textContent = fmt(Math.round(cuota));
 

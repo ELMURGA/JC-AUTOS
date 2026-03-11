@@ -50,6 +50,21 @@
     color: var(--text-secondary);
     font-size: 1.05rem;
     line-height: 1.6;
+    transition: color 0.25s ease;
+}
+
+.contact-text p:hover {
+    color: var(--accent-primary);
+    cursor: default;
+}
+
+.contact-text a:hover {
+    color: var(--accent-primary);
+}
+
+/* El teléfono ya es dorado: al hover pasa a blanco luminoso */
+.contact-text a[href^="tel:"]:hover {
+    color: #fff;
 }
 
 .contact-form {

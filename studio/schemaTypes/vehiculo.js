@@ -116,7 +116,8 @@ export default {
             name: 'precio',
             title: 'Precio (€)',
             type: 'number',
-            validation: Rule => Rule.required().min(0),
+            description: 'Introduce el precio en euros SIN puntos ni comas. Ejemplo: 32900 (no 32.900 ni 32,9)',
+            validation: Rule => Rule.required().integer().min(0),
         },
         {
             name: 'cv',
@@ -199,28 +200,6 @@ export default {
             title: 'Descripción del vehículo',
             type: 'text',
             rows: 5,
-        },
-
-        // ── Ficha técnica (tabla clave-valor) ──────────────────
-        {
-            name: 'specs',
-            title: 'Ficha técnica',
-            description: 'Añade las especificaciones técnicas (pares campo/valor)',
-            type: 'array',
-            of: [
-                {
-                    type: 'object',
-                    name: 'specItem',
-                    title: 'Especificación',
-                    fields: [
-                        { name: 'key',   title: 'Campo', type: 'string' },
-                        { name: 'value', title: 'Valor', type: 'string' },
-                    ],
-                    preview: {
-                        select: { title: 'key', subtitle: 'value' },
-                    },
-                },
-            ],
         },
 
         // ── Equipamiento por categorías ────────────────────────

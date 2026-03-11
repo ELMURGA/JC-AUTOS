@@ -26,9 +26,10 @@
     const resetBtn   = document.getElementById('resetFilters');
     const activeFiltersContainer = document.getElementById('activeFilters');
 
-    /* ── Helpers de formato ────────────────────────────────────── */
-    const fmt    = n => n != null ? n.toLocaleString('es-ES') + ' €' : '—';
-    const fmtKm  = n => n.toLocaleString('es-ES') + ' km';
+    /* Formatea un precio siempre como número entero con separador de miles español.
+       Ejemplo: 32900 → "32.900 €" | 32.9 (dato erróneo) → "33 €" */
+    const fmt    = n => n != null ? Math.round(Number(n)).toLocaleString('es-ES') + ' €' : '—';
+    const fmtKm  = n => Number(n).toLocaleString('es-ES') + ' km';
     const capFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
     /* ── Skeleton de carga ─────────────────────────────────────── */

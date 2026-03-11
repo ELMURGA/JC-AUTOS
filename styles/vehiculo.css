@@ -76,9 +76,10 @@
 .veh-main-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.4s ease;
     display: block;
+    background: var(--bg-surface);
 }
 
 .veh-main-img-wrap:hover .veh-main-img {
@@ -185,8 +186,9 @@
 .veh-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: var(--bg-surface);
 }
 
 /* ── PANEL INFO (derecha) ─────────────────────────────────── */
@@ -705,8 +707,9 @@
 .similar-img {
     width: 100%;
     aspect-ratio: 16 / 10;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: var(--bg-surface);
 }
 
 .similar-img-placeholder {
